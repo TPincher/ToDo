@@ -43,16 +43,11 @@ public class TaskService {
 			}
 			
 			Task foundTask = maybeTask.get();
-			if(data.getTitle() != null) {
-				foundTask.setTitle(data.getTitle().trim());
-			}
 			
+			mapper.map(data, foundTask);
+
 			if(data.getCategory() > 0 && data.getCategory() < 4) {
 				foundTask.setCategory(data.getCategory());
-			}
-			
-			if (data.getContent() != null) {
-				foundTask.setContent(data.getContent().trim());
 			}
 			
 			if (data.getPriority() > 0 && data.getPriority() < 4) {

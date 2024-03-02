@@ -19,9 +19,9 @@ public class ModelMapperConfig {
 		mapper.typeMap(String.class, String.class).setConverter(new StringTrimConverter());
 		mapper.getConfiguration().setSkipNullEnabled(true);
 		mapper.typeMap(CreateTaskDTO.class, Task.class).addMappings(
-				m -> m.using(new LowerCaseConverter()).map(CreateTaskDTO::getCategory, Task::setCategory));
+				m -> m.using(new LowerCaseConverter()).map(CreateTaskDTO::getContent, Task::setContent));
 		mapper.typeMap(UpdateTaskDTO.class, Task.class).addMappings(
-				m -> m.using(new LowerCaseConverter()).map(UpdateTaskDTO::getCategory, Task::setCategory));
+				m -> m.using(new LowerCaseConverter()).map(UpdateTaskDTO::getContent, Task::setContent));
 		return mapper;
 	}
 	
