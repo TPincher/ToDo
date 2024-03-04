@@ -2,30 +2,32 @@ package toDoListProject.ToDoList.tasks;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import toDoListProject.ToDoList.category.Category;
+import toDoListProject.ToDoList.common.BaseEntity;
 
 @Entity
 @Table(name = "tasks")
-public class Task {
+public class Task extends BaseEntity {
 	
 	public Task() {
 		super();
 	}
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
 
 	@Column
 	private String title;
 	
-	@Column
-	private int category;
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "category_id")
+	@JsonIgnoreProperties("tasks")
+	private Category category;
 	
 	@Column
 	private String content;
@@ -35,20 +37,9 @@ public class Task {
 	
 	@Column
 	private int priority;
-	
-	@Column
-	private Date createdAt;
-	
+
 	@Column
 	private Date dueAt;
-
-	public void setCreatedAt(Date createdAt) {
-		this.createdAt = createdAt;
-	}
-
-	public Date getCreatedAt() {
-		return createdAt;
-	}
 
 	public Date getDueAt() {
 		return dueAt;
@@ -66,11 +57,11 @@ public class Task {
 		this.title = title;
 	}
 
-	public int getCategory() {
+	public Category getCategory() {
 		return category;
 	}
 
-	public void setCategory(int category) {
+	public void setCategory(Category category) {
 		this.category = category;
 	}
 
@@ -80,10 +71,6 @@ public class Task {
 
 	public void setContent(String content) {
 		this.content = content;
-	}
-
-	public Long getId() {
-		return id;
 	}
 
 	public int getStatus() {

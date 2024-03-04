@@ -8,6 +8,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
 import jakarta.persistence.PrePersist;
+import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 
@@ -25,10 +26,49 @@ public abstract class BaseEntity {
 	@Column
 	private Date updatedAt;
 	
+	public BaseEntity() {
+	}
+	
+	public BaseEntity(Long id, Date createdAt, Date updatedAt) {
+		super();
+		this.id = id;
+		this.createdAt = createdAt;
+		this.updatedAt = updatedAt;
+	}
+
 	@PrePersist
 	public void onCreate() {
 		Date timestamp = new Date();
 		createdAt = timestamp;
 		updatedAt = timestamp;
+	}
+	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Date getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(Date createdAt) {
+		this.createdAt = createdAt;
+	}
+
+	public Date getUpdatedAt() {
+		return updatedAt;
+	}
+
+	public void setUpdatedAt(Date updatedAt) {
+		this.updatedAt = updatedAt;
+	}
+
+	@PreUpdate
+	public void onUpdate() {
+		updatedAt = new Date();
 	}
 }

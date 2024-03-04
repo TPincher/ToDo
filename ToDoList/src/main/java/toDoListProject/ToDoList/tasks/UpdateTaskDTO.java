@@ -1,6 +1,7 @@
 package toDoListProject.ToDoList.tasks;
 
 import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Positive;
 
 public class UpdateTaskDTO {
 
@@ -10,7 +11,9 @@ public class UpdateTaskDTO {
 	@Pattern(regexp = "^(?=\\S).*$", message = "Content cannot be empty")
 	private String content;
 
-	private int category;
+	
+	@Positive
+	private Long categoryId;
 
 	private int priority;
 
@@ -22,12 +25,12 @@ public class UpdateTaskDTO {
 		this.title = title;
 	}
 
-	public int getCategory() {
-		return category;
+	public Long getCategoryId() {
+		return categoryId;
 	}
 
-	public void setCategory(int category) {
-		this.category = category;
+	public void setCategoryId(Long categoryId) {
+		this.categoryId = categoryId;
 	}
 
 	public String getContent() {

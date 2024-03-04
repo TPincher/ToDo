@@ -1,6 +1,5 @@
 package toDoListProject.ToDoList.tasks;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -10,6 +9,10 @@ import org.springframework.stereotype.Service;
 
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
+import toDoListProject.ToDoList.category.Category;
+import toDoListProject.ToDoList.category.CategoryService;
+import toDoListProject.ToDoList.exceptions.ServiceValidationException;
+import toDoListProject.ToDoList.exceptions.ValidationErrors;
 
 @Service
 @Transactional
@@ -19,12 +22,30 @@ public class TaskService {
 	private TaskRepository repo;
 	
 	@Autowired
+	private CategoryService categoryService;
+	
+	@Autowired
 	private ModelMapper mapper;
 
-	public Task createTask(@Valid CreateTaskDTO data) {
+	public Task createTask(@Valid CreateTaskDTO data) throws ServiceValidationException {
 		
+		ValidationErrors errors = new ValidationErrors();
 		Task newTask = mapper.map(data, Task.class);
-		newTask.setCreatedAt(new Date());
+		
+		Long categoryId = data.getCategoryId();
+		
+		Optional<Category> maybeCategory = this.categoryService.findById(categoryId);
+		
+		if(maybeCategory.isEmpty()) {
+			errors.addError("category", String.format("Category with id %s does not exist", categoryId));
+		} else {
+			newTask.setCategory(maybeCategory.get());
+		}
+		
+		if(errors.hasErrors()) {
+			throw new ServiceValidationException(errors);
+		}
+		
 		return this.repo.save(newTask);
 	}
 
@@ -45,16 +66,9 @@ public class TaskService {
 			Task foundTask = maybeTask.get();
 			
 			mapper.map(data, foundTask);
-
-			if(data.getCategory() > 0 && data.getCategory() < 4) {
-				foundTask.setCategory(data.getCategory());
-			}
 			
-			if (data.getPriority() > 0 && data.getPriority() < 4) {
-				foundTask.setPriority(data.getPriority());
-			}
-			
-		return maybeTask;
+			Task updated = this.repo.save(foundTask);
+			return Optional.of(updated);
 	}
 
 	public boolean deleteTaskById(Long id) {

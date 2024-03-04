@@ -11,21 +11,25 @@ public class CreateTaskDTO {
 	
 	@NotNull
 	@Positive
-	private int category;
+	private Long categoryId;
 	
 	@NotBlank
 	private String content;
-	
+
 	@NotNull
 	@Positive
 	private int priority;
+	
+	public Long getCategoryId() {
+		return categoryId;
+	}
+	
+	public void setCategoryId(Long categoryId) {
+		this.categoryId = categoryId;
+	}
 
 	public String getTitle() {
 		return title;
-	}
-
-	public int getCategory() {
-		return category;
 	}
 
 	public String getContent() {
@@ -34,6 +38,11 @@ public class CreateTaskDTO {
 
 	public int getPriority() {
 		return priority;
+	}
+	
+	@Override
+	public String toString() {
+		return "CreateTaskDTO title=" + title + ", content=" +  content;
 	}
 
 }
