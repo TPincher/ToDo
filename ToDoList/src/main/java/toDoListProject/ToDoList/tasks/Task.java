@@ -12,6 +12,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import toDoListProject.ToDoList.category.Category;
 import toDoListProject.ToDoList.common.BaseEntity;
+import toDoListProject.ToDoList.status.Status;
 
 @Entity
 @Table(name = "tasks")
@@ -24,7 +25,7 @@ public class Task extends BaseEntity {
 	@Column
 	private String title;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "category_id")
 	@JsonIgnoreProperties("tasks")
 	private Category category;
@@ -32,22 +33,13 @@ public class Task extends BaseEntity {
 	@Column
 	private String content;
 	
-	@Column
-	private int status;
+	@ManyToOne(cascade = CascadeType.PERSIST)
+	@JoinColumn(name = "status_id")
+	@JsonIgnoreProperties("tasks")
+	private Status status;
 	
 	@Column
-	private int priority;
-
-	@Column
-	private Date dueAt;
-
-	public Date getDueAt() {
-		return dueAt;
-	}
-
-	public void setDueAt(Date dueAt) {
-		this.dueAt = dueAt;
-	}
+	private Date dueDate;
 
 	public String getTitle() {
 		return title;
@@ -73,22 +65,19 @@ public class Task extends BaseEntity {
 		this.content = content;
 	}
 
-	public int getStatus() {
+	public Status getStatus() {
 		return status;
 	}
 
-	public void setStatus(int status) {
+	public void setStatus(Status status) {
 		this.status = status;
 	}
 
-	public int getPriority() {
-		return priority;
+	public Date getDueDate() {
+		return dueDate;
 	}
 
-	public void setPriority(int priority) {
-		this.priority = priority;
+	public void setDueDate(Date dueDate) {
+		this.dueDate = dueDate;
 	}
-	
-	
-
 }
