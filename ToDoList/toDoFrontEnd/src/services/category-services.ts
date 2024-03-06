@@ -3,6 +3,6 @@ export const getAllCategories = async () => {
   if (!response.ok) {
     throw new Error("Failed to get categories");
   }
-  const data = await response.json();
-  return data;
+  const categoryData = await response.json();
+  return categoryData;
 };
