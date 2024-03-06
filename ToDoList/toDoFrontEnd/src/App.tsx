@@ -7,6 +7,7 @@ import TasksPage from "./pages/TasksPage.js";
 import NewTasksPage from "./pages/NewTasksPage.js";
 import StatusContextProvider from "./context/StatusContext.js";
 import { getAllStatuses } from "./services/status-services.js";
+import CategoriesPage from "./pages/CategoriesPage.js";
 
 function App() {
   useEffect(() => {
@@ -29,7 +30,7 @@ function App() {
             <Route path="/" element={<h1>Home page</h1>} />
             <Route path="/tasks" element={<TasksPage />} />
             <Route path="/tasks/new" element={<NewTasksPage />} />
-            <Route path="/tasks/categories" element={<h1>Categories</h1>} />
+            <Route path="/tasks/categories" element={<CategoriesPage />} />
           </Routes>
         </BrowserRouter>
       </CategoriesContextProvider>

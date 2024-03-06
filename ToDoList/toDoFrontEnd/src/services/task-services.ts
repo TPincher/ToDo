@@ -16,7 +16,18 @@ export const addTask = async (taskData: any) => {
     },
   });
   if (!response.ok) {
-    throw new Error("Failed to get tasks");
+    throw new Error("Failed to add tasks");
   }
   return response.json();
+};
+
+export const deleteTask = async (id: number) => {
+  const response = await fetch(`http://localhost:8080/tasks/${id}`, {
+    method: "DELETE",
+  });
+  if (!response.ok) {
+    throw new Error("Failed to delete task");
+  }
+  console.log(response);
+  return null;
 };

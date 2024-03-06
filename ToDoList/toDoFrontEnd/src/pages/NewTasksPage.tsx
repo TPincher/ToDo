@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import TaskForm from "../components/TaskForm/TaskForm";
 import { addTask } from "../services/task-services";
+import Navbar from "../containers/Navbar";
 
 const NewTasksPage = () => {
   const navigator = useNavigate();
@@ -14,6 +15,7 @@ const NewTasksPage = () => {
     <div>
       <h1>Add new Tasks</h1>
       <TaskForm submit={submit} />
+      <Navbar />
     </div>
   );
 };

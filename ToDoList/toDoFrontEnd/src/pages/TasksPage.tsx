@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { getAllTasks } from "../services/task-services";
+import { deleteTask, getAllTasks } from "../services/task-services";
+import Navbar from "../containers/Navbar";
 
 const TasksPage = () => {
   const [tasks, setTasks] = useState([]);
@@ -11,14 +12,21 @@ const TasksPage = () => {
     console.log(tasks);
   }, []);
 
+  const handleClick = (id: number) => {
+    deleteTask(id);
+  };
+
   return (
     <div>
       <h1>TasksPage</h1>
       <ul>
-        {tasks.map((task) => {
-          return <li key={task.id}>{task.title}</li>;
-        })}
+        {tasks &&
+          tasks.map((task) => {
+            return <li key={task.id}>{task.title}</li>;
+          })}
       </ul>
+      <button onClick={() => handleClick(5)}>Delete</button>
+      <Navbar />
     </div>
   );
 };
