@@ -19,20 +19,26 @@ const deleteTaskClick = (id: number) => {
 const Card = (props: CardProps) => {
   return (
     <div className={styles.card}>
-      <button onClick={() => deleteTaskClick(props.taskId)}>
-        <img src={checkbox} alt="Tasks" className={styles.cardButton} />
-      </button>
-      <h3>{props.title}</h3>
-      <div>{props.content}</div>
-      <div>{props.status}</div>
-      <button onClick={() => deleteTaskClick(props.taskId)}>
-        <img src={bin} alt="Tasks" className={styles.cardButton} />
-      </button>
-      <Link to={`/tasks/edit?taskId=${props.taskId}`}>
-        <button>
-          <img src={pencil} alt="Tasks" className={styles.cardButton} />
+      <div className={styles.outer}>
+        <button onClick={() => deleteTaskClick(props.taskId)}>
+          <img src={checkbox} alt="Tasks" className={styles.cardButton} />
         </button>
-      </Link>
+      </div>
+      <div className={styles.middle}>
+        <h3>{props.title}</h3>
+        <div>{props.content}</div>
+        <div>{props.status}</div>
+      </div>
+      <div className={styles.outer}>
+        <Link to={`/tasks/edit?taskId=${props.taskId}`}>
+          <button>
+            <img src={pencil} alt="Tasks" className={styles.cardButton} />
+          </button>
+        </Link>
+        <button onClick={() => deleteTaskClick(props.taskId)}>
+          <img src={bin} alt="Tasks" className={styles.cardButton} />
+        </button>
+      </div>
     </div>
   );
 };

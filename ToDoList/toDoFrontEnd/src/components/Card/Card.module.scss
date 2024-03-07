@@ -1,9 +1,21 @@
 .card {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
   border: 2px solid black;
   border-radius: 8px;
   margin: 5px;
   padding: 10px;
   background-color: whitesmoke;
+}
+
+.outer {
+  display: flex;
+  flex-direction: column;
+}
+
+.middle {
 }
 
 .cardButton {
