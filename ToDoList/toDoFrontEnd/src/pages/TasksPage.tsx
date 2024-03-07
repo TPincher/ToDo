@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
-import { deleteTask, getAllTasks } from "../services/task-services";
+import { getAllTasks } from "../services/task-services";
 import Navbar from "../containers/Navbar";
+import Card from "../components/Card/Card";
+import Title from "../components/Title/Title";
+import styles from "./PageStyles.module.scss";
 
 const TasksPage = () => {
   const [tasks, setTasks] = useState([]);
@@ -12,20 +15,28 @@ const TasksPage = () => {
     console.log(tasks);
   }, []);
 
-  const handleClick = (id: number) => {
-    deleteTask(id);
-  };
-
   return (
     <div>
-      <h1>TasksPage</h1>
-      <ul>
+      <Title title={"Task List"} />
+      <ul className={styles.list}>
         {tasks &&
           tasks.map((task) => {
-            return <li key={task.id}>{task.title}</li>;
+            console.log(task);
+            return (
+              <>
+                <li className={styles.listItem}>
+                  <Card
+                    taskId={task.id}
+                    title={task.title}
+                    content={task.content}
+                    status={task.status.name}
+                  />
+                </li>
+              </>
+            );
           })}
       </ul>
-      <button onClick={() => handleClick(5)}>Delete</button>
+
       <Navbar />
     </div>
   );

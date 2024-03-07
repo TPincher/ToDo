@@ -21,6 +21,20 @@ export const addTask = async (taskData: any) => {
   return response.json();
 };
 
+export const editTask = async (id: number, taskData: any) => {
+  const response = await fetch(`http://localhost:8080/tasks/${id}`, {
+    method: "PATCH",
+    body: JSON.stringify(taskData),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  if (!response.ok) {
+    throw new Error("Failed to edit tasks");
+  }
+  return response.json();
+};
+
 export const deleteTask = async (id: number) => {
   const response = await fetch(`http://localhost:8080/tasks/${id}`, {
     method: "DELETE",
