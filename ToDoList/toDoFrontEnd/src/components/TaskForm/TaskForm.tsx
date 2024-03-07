@@ -4,6 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { schema } from "./schema";
 import { CategoriesContext } from "../../context/CategoriesContext";
 import { StatusContext } from "../../context/StatusContext";
+import styles from "./TaskForm.module.scss";
 
 const TaskForm = ({ submit, defaultValues = {}, formType = "Create" }) => {
   const { categories } = useContext(CategoriesContext);
@@ -16,7 +17,7 @@ const TaskForm = ({ submit, defaultValues = {}, formType = "Create" }) => {
   } = useForm({ resolver: zodResolver(schema) });
 
   return (
-    <form onSubmit={handleSubmit(submit)}>
+    <form className={styles.TaskForm} onSubmit={handleSubmit(submit)}>
       <div>
         <label htmlFor="titleInput">Title</label>
         <input type="text" id="titleInput" {...register("title")} />

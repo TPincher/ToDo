@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import "./App.css";
+import "./App.scss";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import CategoriesContextProvider from "./context/CategoriesContext.js";
 import { getAllCategories } from "./services/category-services.js";
@@ -10,6 +10,7 @@ import { getAllStatuses } from "./services/status-services.js";
 import CategoriesPage from "./pages/CategoriesPage.js";
 import LandingPage from "./pages/LandingPage.js";
 import EditPage from "./pages/EditPage.js";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   useEffect(() => {
@@ -36,6 +37,11 @@ function App() {
             <Route path="/tasks/edit" element={<EditPage />} />
           </Routes>
         </BrowserRouter>
+        <ToastContainer
+          position="bottom-center"
+          autoClose={1000}
+          hideProgressBar={true}
+        />
       </CategoriesContextProvider>
     </StatusContextProvider>
   );

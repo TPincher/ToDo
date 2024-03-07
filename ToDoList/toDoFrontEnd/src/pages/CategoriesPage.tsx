@@ -13,7 +13,6 @@ const CategoriesPage = () => {
       <ul className={styles.list}>
         {categories &&
           categories.map((category: any) => {
-            console.log(category);
             return (
               <li key={category.name} className={styles.listItem}>
                 {category.name}

@@ -12,7 +12,7 @@ const Navbar = () => {
           <img src={checkbox} alt="Tasks" className={styles.icon} />
         </div>
       </Link>
-      <Link to="/tasks/new" className={styles.navbox}>
+      <Link to="/tasks/new" className={styles.navboxcenter}>
         <div>
           <img src={plusIcon} alt="New Task" className={styles.icon} />
         </div>

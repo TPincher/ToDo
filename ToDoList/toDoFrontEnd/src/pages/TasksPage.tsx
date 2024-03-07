@@ -12,7 +12,6 @@ const TasksPage = () => {
     getAllTasks()
       .then((taskData) => setTasks(taskData))
       .catch((e) => console.warn(e.message));
-    console.log(tasks);
   }, []);
 
   return (
@@ -21,7 +20,6 @@ const TasksPage = () => {
       <ul className={styles.list}>
         {tasks &&
           tasks.map((task) => {
-            console.log(task);
             return (
               <>
                 <li className={styles.listItem}>
@@ -36,7 +34,7 @@ const TasksPage = () => {
             );
           })}
       </ul>
-
+      <div></div>
       <Navbar />
     </div>
   );

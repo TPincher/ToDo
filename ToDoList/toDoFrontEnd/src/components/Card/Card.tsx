@@ -3,7 +3,7 @@ import styles from "./Card.module.scss";
 import bin from "../../assets/icons8-garbage-can-91.png";
 import checkbox from "../../assets/icons8-unchecked-checkbox-100.png";
 import pencil from "../../assets/icons8-pencil-100.png";
-import { Link, LinkProps } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 interface CardProps {
   title: string;
@@ -28,7 +28,6 @@ const Card = (props: CardProps) => {
       <button onClick={() => deleteTaskClick(props.taskId)}>
         <img src={bin} alt="Tasks" className={styles.cardButton} />
       </button>
-
       <Link to={`/tasks/edit?taskId=${props.taskId}`}>
         <button>
           <img src={pencil} alt="Tasks" className={styles.cardButton} />

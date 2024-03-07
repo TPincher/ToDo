@@ -1,6 +1,12 @@
 .list {
+  position: fixed;
+  top: 8.3%;
+  left: 5%;
+  height: 90%;
+  width: 90%;
   margin: 0px;
   padding: 0px;
+  overflow-y: auto;
 }
 
 .listItem {

@@ -10,15 +10,29 @@
 
 .navbox {
   display: flex;
-  border: 2px solid black;
+  border-top: 2px solid black;
   width: 40%;
   height: 70px;
   justify-content: center;
   align-items: center;
-  background-color: gray;
+  background: linear-gradient(
+    to bottom right,
+    gray 20%,
+    rgb(203, 203, 203) 80%
+  );
+
+  &center {
+    @extend .navbox;
+    border-left: 2px solid black;
+    border-right: 2px solid black;
+  }
 
   &:hover {
-    background-color: darkslategray;
+    background: linear-gradient(
+      to bottom right,
+      rgb(60, 60, 60) 20%,
+      rgb(120, 120, 120) 80%
+    );
   }
 }
 
