@@ -14,15 +14,11 @@ import { ToastContainer } from "react-toastify";
 
 function App() {
   useEffect(() => {
-    getAllCategories()
-      .then((categoryData) => console.log(categoryData))
-      .catch((e) => console.warn(e.message));
+    getAllCategories().catch((e) => console.warn(e.message));
   }, []);
 
   useEffect(() => {
-    getAllStatuses()
-      .then((statusData) => console.log(statusData))
-      .catch((e) => console.warn(e.message));
+    getAllStatuses().catch((e) => console.warn(e.message));
   }, []);
 
   return (

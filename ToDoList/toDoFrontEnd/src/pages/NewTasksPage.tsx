@@ -3,6 +3,7 @@ import TaskForm from "../components/TaskForm/TaskForm";
 import { addTask } from "../services/task-services";
 import Navbar from "../containers/Navbar";
 import Title from "../components/Title/Title";
+import styles from "./PageStyles.module.scss";
 
 const NewTasksPage = () => {
   const navigator = useNavigate();
@@ -15,7 +16,10 @@ const NewTasksPage = () => {
   return (
     <div>
       <Title title={"Add a Task"} />
-      <TaskForm submit={submit} />
+      <section className={styles.formContainer}>
+        <TaskForm submit={submit} />
+      </section>
+
       <Navbar />
     </div>
   );

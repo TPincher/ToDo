@@ -18,14 +18,19 @@ const TaskForm = ({ submit, defaultValues = {}, formType = "Create" }) => {
 
   return (
     <form className={styles.TaskForm} onSubmit={handleSubmit(submit)}>
-      <div>
+      <div className={styles.TaskLine}>
         <label htmlFor="titleInput">Title</label>
-        <input type="text" id="titleInput" {...register("title")} />
+        <input
+          type="text"
+          id="titleInput"
+          {...register("title")}
+          className={styles.Field}
+        />
       </div>
 
-      <div>
+      <div className={styles.TaskLine}>
         <label>Category</label>
-        <select {...register("categoryId")}>
+        <select {...register("categoryId")} className={styles.Field}>
           {categories.map((category: any) => (
             <option key={category.id} value={category.id}>
               {category.name}
@@ -34,9 +39,9 @@ const TaskForm = ({ submit, defaultValues = {}, formType = "Create" }) => {
         </select>
       </div>
 
-      <div>
+      <div className={styles.TaskLine}>
         <label>Status</label>
-        <select {...register("statusId")}>
+        <select {...register("statusId")} className={styles.Field}>
           {status.map((status: any) => (
             <option key={status.id} value={status.id}>
               {status.name}
@@ -45,9 +50,12 @@ const TaskForm = ({ submit, defaultValues = {}, formType = "Create" }) => {
         </select>
       </div>
 
-      <div>
+      <div className={styles.TaskLine}>
         <label>Content</label>
-        <textarea {...register("content")}></textarea>
+        <textarea
+          {...register("content")}
+          className={styles.TextBox}
+        ></textarea>
         <button>{formType === "Create" ? "Create Task" : "Update Task"}</button>
       </div>
     </form>

@@ -13,3 +13,32 @@ export const getAllCategories = async () => {
   const categoryData = await response.json();
   return categoryData;
 };
+
+export const addCategory = async (category: any) => {
+  const response = await fetch("http://localhost:8080/categories", {
+    method: "POST",
+    body: JSON.stringify(category),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  if (!response.ok) {
+    failNotify("Failed to add category");
+    throw new Error("Failed to add category");
+  }
+  successNotify("Category created!");
+  return response.json();
+};
+
+export const deleteCategory = async (id: number) => {
+  const response = await fetch(`http://localhost:8080/categories/${id}`, {
+    method: "DELETE",
+  });
+  if (!response.ok) {
+    failNotify("Failed to delete category");
+    throw new Error("Failed to delete category");
+  }
+  console.log(response);
+  successNotify("Category deleted");
+  return null;
+};

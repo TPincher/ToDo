@@ -6,10 +6,11 @@ import pencil from "../../assets/icons8-pencil-100.png";
 import { Link } from "react-router-dom";
 
 interface CardProps {
-  title: string;
-  content: string;
-  status: string;
-  taskId: number;
+  title?: string;
+  content?: string;
+  status?: string;
+  taskId?: number;
+  category?: string;
 }
 
 const deleteTaskClick = (id: number) => {
@@ -20,23 +21,30 @@ const Card = (props: CardProps) => {
   return (
     <div className={styles.card}>
       <div className={styles.outer}>
-        <button onClick={() => deleteTaskClick(props.taskId)}>
-          <img src={checkbox} alt="Tasks" className={styles.cardButton} />
+        <button
+          onClick={() => deleteTaskClick(props.taskId)}
+          className={styles.cardButton}
+        >
+          <img src={checkbox} alt="Tasks" className={styles.cardIcon} />
         </button>
       </div>
       <div className={styles.middle}>
         <h3>{props.title}</h3>
+        <div>{props.category}</div>
         <div>{props.content}</div>
         <div>{props.status}</div>
       </div>
       <div className={styles.outer}>
         <Link to={`/tasks/edit?taskId=${props.taskId}`}>
-          <button>
-            <img src={pencil} alt="Tasks" className={styles.cardButton} />
+          <button className={styles.cardButton}>
+            <img src={pencil} alt="Tasks" className={styles.cardIcon} />
           </button>
         </Link>
-        <button onClick={() => deleteTaskClick(props.taskId)}>
-          <img src={bin} alt="Tasks" className={styles.cardButton} />
+        <button
+          onClick={() => deleteTaskClick(props.taskId)}
+          className={styles.cardButton}
+        >
+          <img src={bin} alt="Tasks" className={styles.cardIcon} />
         </button>
       </div>
     </div>

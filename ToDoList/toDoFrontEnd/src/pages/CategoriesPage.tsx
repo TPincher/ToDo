@@ -3,6 +3,7 @@ import Navbar from "../containers/Navbar";
 import { CategoriesContext } from "../context/CategoriesContext";
 import Title from "../components/Title/Title";
 import styles from "./PageStyles.module.scss";
+import CategoryCard from "../components/CategoryCard/CategoryCard";
 
 const CategoriesPage = () => {
   const { categories } = useContext(CategoriesContext);
@@ -13,9 +14,14 @@ const CategoriesPage = () => {
       <ul className={styles.list}>
         {categories &&
           categories.map((category: any) => {
+            console.log(category);
             return (
               <li key={category.name} className={styles.listItem}>
-                {category.name}
+                <CategoryCard
+                  title={category.name}
+                  taskCount={category.tasks.length}
+                  categoryId={category.id}
+                />
               </li>
             );
           })}

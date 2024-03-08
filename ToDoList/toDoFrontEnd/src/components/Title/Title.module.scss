@@ -1,15 +1,19 @@
 .title {
   background: linear-gradient(
-    to bottom right,
-    gray 20%,
-    rgb(203, 203, 203) 80%
+    to bottom,
+    rgb(203, 203, 203) 0%,
+    rgb(240, 240, 240) 8%,
+    rgb(203, 203, 203) 40%,
+    gray 95%
   );
   position: fixed;
   top: 0;
   left: 0;
   text-align: center;
-  height: 8%;
+  height: 40px;
   width: 100%;
   border-bottom: 2px solid black;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
   margin: 0;
 }

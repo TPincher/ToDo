@@ -1,12 +1,14 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { getAllTasks } from "../services/task-services";
 import Navbar from "../containers/Navbar";
 import Card from "../components/Card/Card";
 import Title from "../components/Title/Title";
 import styles from "./PageStyles.module.scss";
+import { CategoriesContext } from "../context/CategoriesContext";
 
 const TasksPage = () => {
   const [tasks, setTasks] = useState([]);
+  const { categories } = useContext(CategoriesContext);
 
   useEffect(() => {
     getAllTasks()
@@ -20,6 +22,8 @@ const TasksPage = () => {
       <ul className={styles.list}>
         {tasks &&
           tasks.map((task) => {
+            const taskId = task.category.id;
+            console.log(taskId);
             return (
               <>
                 <li className={styles.listItem}>
@@ -28,6 +32,7 @@ const TasksPage = () => {
                     title={task.title}
                     content={task.content}
                     status={task.status.name}
+                    // category={categories[taskId - 1].name}
                   />
                 </li>
               </>

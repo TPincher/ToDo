@@ -1,12 +1,28 @@
 .list {
   position: fixed;
-  top: 8.3%;
-  left: 5%;
-  height: 90%;
-  width: 90%;
+  top: 8vh;
+  left: 5vw;
+  height: 82vh;
+  width: 90vw;
+  min-width: 280px;
   margin: 0px;
   padding: 0px;
   overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.formContainer {
+  height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  max-height: 600px;
+}
+
+.list::-webkit-scrollbar {
+  display: none;
 }
 
 .listItem {
