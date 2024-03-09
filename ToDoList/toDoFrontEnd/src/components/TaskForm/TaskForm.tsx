@@ -19,7 +19,7 @@ const TaskForm = ({ submit, defaultValues = {}, formType = "Create" }) => {
   return (
     <form className={styles.TaskForm} onSubmit={handleSubmit(submit)}>
       <div className={styles.TaskLine}>
-        <label htmlFor="titleInput">Title</label>
+        <label htmlFor="titleInput">Task Name</label>
         <input
           type="text"
           id="titleInput"
@@ -40,7 +40,7 @@ const TaskForm = ({ submit, defaultValues = {}, formType = "Create" }) => {
       </div>
 
       <div className={styles.TaskLine}>
-        <label>Status</label>
+        <label>Priority</label>
         <select {...register("statusId")} className={styles.Field}>
           {status.map((status: any) => (
             <option key={status.id} value={status.id}>
@@ -51,7 +51,7 @@ const TaskForm = ({ submit, defaultValues = {}, formType = "Create" }) => {
       </div>
 
       <div className={styles.TaskLine}>
-        <label>Content</label>
+        <label>Task Description</label>
         <textarea
           {...register("content")}
           className={styles.TextBox}

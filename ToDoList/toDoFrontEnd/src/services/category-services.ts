@@ -30,6 +30,22 @@ export const addCategory = async (category: any) => {
   return response.json();
 };
 
+export const editCategory = async (id: number, categoryData: any) => {
+  const response = await fetch(`http://localhost:8080/categories/${id}`, {
+    method: "PATCH",
+    body: JSON.stringify(categoryData),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  if (!response.ok) {
+    failNotify("Failed to edit category");
+    throw new Error("Failed to edit category");
+  }
+  successNotify("Category edited");
+  return response.json();
+};
+
 export const deleteCategory = async (id: number) => {
   const response = await fetch(`http://localhost:8080/categories/${id}`, {
     method: "DELETE",

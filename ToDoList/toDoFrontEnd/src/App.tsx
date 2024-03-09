@@ -11,6 +11,7 @@ import CategoriesPage from "./pages/CategoriesPage.js";
 import LandingPage from "./pages/LandingPage.js";
 import EditPage from "./pages/EditPage.js";
 import { ToastContainer } from "react-toastify";
+import NewCategoryPage from "./pages/NewCategoryPage.js";
 
 function App() {
   useEffect(() => {
@@ -29,6 +30,7 @@ function App() {
             <Route path="/" element={<LandingPage />} />
             <Route path="/tasks" element={<TasksPage />} />
             <Route path="/tasks/new" element={<NewTasksPage />} />
+            <Route path="/tasks/categories/new" element={<NewCategoryPage />} />
             <Route path="/tasks/categories" element={<CategoriesPage />} />
             <Route path="/tasks/edit" element={<EditPage />} />
           </Routes>

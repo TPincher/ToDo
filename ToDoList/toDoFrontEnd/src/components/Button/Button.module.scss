@@ -1,7 +1,21 @@
+.buttonContainer {
+  width: 100px;
+  justify-self: center;
+  align-self: center;
+}
+
 .button {
-  background: linear-gradient(
-    to bottom right,
-    gray 20%,
-    rgb(203, 203, 203) 80%
-  );
+  background: whitesmoke;
+  width: 100px;
+  height: 100px;
+  box-shadow: 5px 5px gray;
+  border-radius: 100%;
+
+  &:hover {
+    background: linear-gradient(
+      to bottom right,
+      rgb(160, 160, 160) 20%,
+      rgb(100, 100, 100) 80%
+    );
+  }
 }
