@@ -2,61 +2,44 @@ package toDoListProject.ToDoList.tasks;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import toDoListProject.ToDoList.category.Category;
+import toDoListProject.ToDoList.common.BaseEntity;
+import toDoListProject.ToDoList.status.Status;
 
 @Entity
 @Table(name = "tasks")
-public class Task {
+public class Task extends BaseEntity {
 	
 	public Task() {
 		super();
 	}
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
 
 	@Column
 	private String title;
 	
-	@Column
-	private int category;
+	@ManyToOne(cascade = CascadeType.PERSIST)
+	@JoinColumn(name = "category_id")
+	@JsonIgnoreProperties("tasks")
+	private Category category;
 	
 	@Column
 	private String content;
 	
-	@Column
-	private int status;
+	@ManyToOne(cascade = CascadeType.PERSIST)
+	@JoinColumn(name = "status_id")
+	@JsonIgnoreProperties("tasks")
+	private Status status;
 	
 	@Column
-	private int priority;
-	
-	@Column
-	private Date createdAt;
-	
-	@Column
-	private Date dueAt;
-
-	public void setCreatedAt(Date createdAt) {
-		this.createdAt = createdAt;
-	}
-
-	public Date getCreatedAt() {
-		return createdAt;
-	}
-
-	public Date getDueAt() {
-		return dueAt;
-	}
-
-	public void setDueAt(Date dueAt) {
-		this.dueAt = dueAt;
-	}
+	private Date dueDate;
 
 	public String getTitle() {
 		return title;
@@ -66,11 +49,11 @@ public class Task {
 		this.title = title;
 	}
 
-	public int getCategory() {
+	public Category getCategory() {
 		return category;
 	}
 
-	public void setCategory(int category) {
+	public void setCategory(Category category) {
 		this.category = category;
 	}
 
@@ -82,26 +65,19 @@ public class Task {
 		this.content = content;
 	}
 
-	public Long getId() {
-		return id;
-	}
-
-	public int getStatus() {
+	public Status getStatus() {
 		return status;
 	}
 
-	public void setStatus(int status) {
+	public void setStatus(Status status) {
 		this.status = status;
 	}
 
-	public int getPriority() {
-		return priority;
+	public Date getDueDate() {
+		return dueDate;
 	}
 
-	public void setPriority(int priority) {
-		this.priority = priority;
+	public void setDueDate(Date dueDate) {
+		this.dueDate = dueDate;
 	}
-	
-	
-
 }

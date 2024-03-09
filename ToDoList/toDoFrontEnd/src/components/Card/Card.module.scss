@@ -1,0 +1,31 @@
+.card {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  box-shadow: 5px 5px gray;
+  border-radius: 8px;
+  margin: 5px;
+  margin-bottom: 10px;
+  padding: 10px;
+  background-color: whitesmoke;
+}
+
+.outer {
+  display: flex;
+  flex-direction: column;
+}
+
+.middle {
+  width: 50%;
+  text-align: center;
+}
+
+.cardIcon {
+  height: 40px;
+  width: 40px;
+}
+
+.cardButton {
+  margin: 5px;
+}

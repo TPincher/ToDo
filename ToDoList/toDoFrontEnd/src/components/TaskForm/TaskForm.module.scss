@@ -1,0 +1,29 @@
+.TaskForm {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10vh;
+  text-align: center;
+  width: 70%;
+  height: 70%;
+  box-shadow: 5px 5px gray;
+  border-radius: 8px;
+  background-color: whitesmoke;
+  padding: 20px;
+}
+
+.TaskLine {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin-bottom: 3vh;
+}
+
+.TextBox {
+  height: 10vh;
+  margin-bottom: 3vh;
+  text-align: center;
+}
+
+.Field {
+  text-align: center;
+}

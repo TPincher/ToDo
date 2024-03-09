@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import jakarta.validation.Valid;
 import toDoListProject.ToDoList.exceptions.NotFoundException;
+import toDoListProject.ToDoList.exceptions.ServiceValidationException;
 
 @RestController
 @RequestMapping("/tasks")
@@ -26,9 +27,8 @@ public class TasksController {
 	private TaskService taskService;
 	
 	@PostMapping
-	public ResponseEntity<Task> createTask(@Valid @RequestBody CreateTaskDTO data) {
+	public ResponseEntity<Task> createTask(@Valid @RequestBody CreateTaskDTO data) throws ServiceValidationException {
 		Task createdTask = this.taskService.createTask(data);
-		System.out.println(createdTask);
 		return new ResponseEntity<>(createdTask, HttpStatus.CREATED);
 	}
 	
@@ -46,7 +46,7 @@ public class TasksController {
 	}
 	
 	@PatchMapping("/{id}")
-	public ResponseEntity<Task> updateTaskById(@Valid @RequestBody UpdateTaskDTO data, @PathVariable Long id) throws NotFoundException {
+	public ResponseEntity<Task> updateTaskById(@Valid @RequestBody UpdateTaskDTO data, @PathVariable Long id) throws NotFoundException, ServiceValidationException {
 		Optional<Task> maybeUpdatedTask = this.taskService.updateById(data, id);
 		Task updatedTask = maybeUpdatedTask.orElseThrow(() -> new NotFoundException(Task.class, id));
 		return new ResponseEntity<>(updatedTask, HttpStatus.OK);

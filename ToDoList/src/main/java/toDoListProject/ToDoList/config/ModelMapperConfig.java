@@ -6,9 +6,8 @@ import org.modelmapper.spi.MappingContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import toDoListProject.ToDoList.tasks.Task;
-import toDoListProject.ToDoList.tasks.UpdateTaskDTO;
-import toDoListProject.ToDoList.tasks.CreateTaskDTO;
+import toDoListProject.ToDoList.category.Category;
+import toDoListProject.ToDoList.category.CreateCategoryDTO;
 
 @Configuration
 public class ModelMapperConfig {
@@ -17,11 +16,12 @@ public class ModelMapperConfig {
 	public ModelMapper modelMapper() {
 		ModelMapper mapper = new ModelMapper();
 		mapper.typeMap(String.class, String.class).setConverter(new StringTrimConverter());
+		
 		mapper.getConfiguration().setSkipNullEnabled(true);
-		mapper.typeMap(CreateTaskDTO.class, Task.class).addMappings(
-				m -> m.using(new LowerCaseConverter()).map(CreateTaskDTO::getContent, Task::setContent));
-		mapper.typeMap(UpdateTaskDTO.class, Task.class).addMappings(
-				m -> m.using(new LowerCaseConverter()).map(UpdateTaskDTO::getContent, Task::setContent));
+		
+		mapper.typeMap(CreateCategoryDTO.class, Category.class).addMappings(
+				m -> m.using(new LowerCaseConverter()).map(CreateCategoryDTO::getName, Category::setName));
+		
 		return mapper;
 	}
 	
