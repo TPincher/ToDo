@@ -9,7 +9,7 @@ const NewCategoryPage = () => {
   const navigator = useNavigate();
   const submit = (data: any) => {
     addCategory(data)
-      .then((data) => navigator("/tasks/categories"))
+      .then(() => navigator("/tasks/categories"))
       .catch((e) => console.warn(e));
   };
 

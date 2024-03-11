@@ -8,12 +8,13 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 
 interface CardProps {
+  key: number;
   title?: string;
   content?: string;
   status?: string;
   taskId?: number;
   category?: string;
-  setTasks: any;
+  setTasks?: any;
 }
 
 const Card = (props: CardProps) => {
@@ -51,14 +52,14 @@ const Card = (props: CardProps) => {
       <div className={styles.outer}>
         <Link to={`/tasks/edit?taskId=${props.taskId}`}>
           <button className={styles.cardButton}>
-            <img src={pencil} alt="Tasks" className={styles.cardIcon} />
+            <img src={pencil} alt="New Task" className={styles.cardIcon} />
           </button>
         </Link>
         <button
           onClick={() => deleteTaskClick(props.taskId)}
           className={styles.cardButton}
         >
-          <img src={bin} alt="Tasks" className={styles.cardIcon} />
+          <img src={bin} alt="Delete Task" className={styles.cardIcon} />
         </button>
       </div>
     </div>

@@ -1,5 +1,12 @@
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { TaskItem } from "./task-services";
+
+export interface CategoryItem {
+  id: number;
+  name: string;
+  tasks: TaskItem[];
+}
 
 const successNotify = (message: String) => toast.success(message);
 const failNotify = (message: String) => toast.error(message);
@@ -54,7 +61,6 @@ export const deleteCategory = async (id: number) => {
     failNotify("Failed to delete category");
     throw new Error("Failed to delete category");
   }
-  console.log(response);
   successNotify("Category deleted");
   return null;
 };

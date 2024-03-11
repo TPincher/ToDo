@@ -14,6 +14,7 @@ import { useContext } from "react";
 const failNotify = (message: String) => toast.error(message);
 
 interface CardProps {
+  key: number;
   title: string;
   taskCount?: number;
   categoryId: number;
@@ -21,7 +22,6 @@ interface CardProps {
 
 const CategoryCard = (props: CardProps) => {
   const { setCategories } = useContext(CategoriesContext);
-  //   console.log(props);
   const deleteCategoryClick = async (id: number, count: any) => {
     if (count > 0) {
       failNotify("Only empty categories can be deleted");
@@ -39,8 +39,6 @@ const CategoryCard = (props: CardProps) => {
         {props.taskCount != null && props.taskCount >= 0 && (
           <p>This category has {props.taskCount} task(s)</p>
         )}
-        <div>{props.content}</div>
-        <div>{props.status}</div>
       </div>
       <div className={styles.outer}>
         <Link to={`/tasks/edit?categoryId=${props.categoryId}`}>

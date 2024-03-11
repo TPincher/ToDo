@@ -1,6 +1,10 @@
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+export interface StatusItem {
+  name: string;
+}
+
 const failNotify = (message: String) => toast.error(message);
 
 export const getAllStatuses = async () => {

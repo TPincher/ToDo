@@ -16,13 +16,13 @@ const EditPage = () => {
 
   const submitTask = (data: any) => {
     editTask(taskId, data)
-      .then((data) => navigator("/tasks"))
+      .then(() => navigator("/tasks"))
       .catch((e) => console.warn(e));
   };
 
   const submitCategory = (data: any) => {
     editCategory(categoryId, data)
-      .then((data) => navigator("/tasks"))
+      .then(() => navigator("/tasks"))
       .catch((e) => console.warn(e));
   };
 

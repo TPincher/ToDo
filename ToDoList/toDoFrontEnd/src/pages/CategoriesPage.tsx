@@ -6,11 +6,11 @@ import styles from "./PageStyles.module.scss";
 import CategoryCard from "../components/CategoryCard/CategoryCard";
 import { getAllCategories } from "../services/category-services";
 import Button from "../components/Button/Button";
+import { CategoryItem } from "../services/category-services";
 
 const CategoriesPage = () => {
   const { setCategories, categories } = useContext(CategoriesContext);
 
-  console.log(categories);
   useEffect(() => {
     getAllCategories()
       .then((data) => setCategories(data))
@@ -22,11 +22,11 @@ const CategoriesPage = () => {
       <Title title={"Categories"} />
       <ul className={styles.list}>
         {categories &&
-          categories.map((category: any) => {
-            // console.log(category);
+          categories.map((category: CategoryItem, id: number) => {
             return (
               <li key={category.name} className={styles.listItem}>
                 <CategoryCard
+                  key={id}
                   title={category.name}
                   taskCount={category.tasks.length}
                   categoryId={category.id}

@@ -1,13 +1,14 @@
 import { createContext, useEffect, useState, ReactNode } from "react";
 import { getAllCategories } from "../services/category-services";
+import { CategoryItem } from "../services/category-services";
 
 interface CategoriesContextProps {
   children: ReactNode;
 }
 
 interface CategoriesContextValue {
-  categories: string[];
-  setCategories: (categories: string[]) => void;
+  categories: CategoryItem[];
+  setCategories: (categories: CategoryItem[]) => void;
 }
 
 export const CategoriesContext = createContext<CategoriesContextValue | null>(
@@ -15,7 +16,7 @@ export const CategoriesContext = createContext<CategoriesContextValue | null>(
 );
 
 const CategoriesContextProvider = ({ children }: CategoriesContextProps) => {
-  const [categories, setCategories] = useState<string[]>([]);
+  const [categories, setCategories] = useState<CategoryItem[]>([]);
 
   useEffect(() => {
     getAllCategories()

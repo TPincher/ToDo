@@ -1,5 +1,14 @@
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { StatusItem } from "./status-services";
+
+export interface TaskItem {
+  id?: number;
+  title?: string;
+  content?: string;
+  statusId?: number;
+  status: StatusItem;
+}
 
 const successNotify = (message: String) => toast.success(message);
 const failNotify = (message: String) => toast.error(message);
@@ -54,7 +63,6 @@ export const deleteTask = async (id: number) => {
     failNotify("Failed to delete task");
     throw new Error("Failed to delete task");
   }
-  console.log(response);
   successNotify("Task deleted");
   return null;
 };
